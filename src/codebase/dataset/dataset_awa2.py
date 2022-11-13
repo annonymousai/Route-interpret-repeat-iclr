@@ -116,7 +116,7 @@ class Awa2(data.dataset.Dataset):
 
 parser = argparse.ArgumentParser(description='CUB Training')
 parser.add_argument('--data-root', metavar='DIR',
-                    default='/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/data/awa2',
+                    default='/data/awa2',
                     help='path to dataset')
 parser.add_argument('--dataset', type=str, default="awa2", help='dataset name')
 parser.add_argument('--img-size', type=int, default=224, help='image\'s size for transforms')

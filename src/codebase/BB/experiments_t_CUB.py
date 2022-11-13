@@ -477,9 +477,9 @@ def predict_t_p(
     out_put_predict = torch.FloatTensor().cuda()
     print("Training T for spurious correlation !!!")
     attributes_train = torch.load(
-        "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/out/spurious-cub/cub/t/lr_0.001_epochs_95_ResNet101_layer4_adaptive_sgd_BCE/dataset_g/train_proba_concepts.pt")
+        "/out/spurious-cub/cub/t/lr_0.001_epochs_95_ResNet101_layer4_adaptive_sgd_BCE/dataset_g/train_proba_concepts.pt")
     attribute_val = torch.load(
-        "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/out/spurious-cub/cub/t/lr_0.001_epochs_95_ResNet101_layer4_adaptive_sgd_BCE/dataset_g/test_proba_concepts.pt")
+        "/out/spurious-cub/cub/t/lr_0.001_epochs_95_ResNet101_layer4_adaptive_sgd_BCE/dataset_g/test_proba_concepts.pt")
 
     attributes_train_selected = attributes_train[:, 108:110]
     attributes_val_selected = attribute_val[:, 108:110]
@@ -761,7 +761,7 @@ def get_bb(args, chk_pt_path_bb, device):
         config = CONFIGS["ViT-B_16"]
         # chkpt = os.path.join(args.checkpoints, args.dataset, 'BB', args.root_bb, args.arch, args.checkpoint_bb)
         chkpt = os.path.join(
-            "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/checkpoints/spurious-cub-specific-classes/cub/explainer/ViT-B_16/lr_0.01_epochs_500_temperature-lens_6.0_use-concepts-as-pi-input_True_input-size-pi_2048_cov_0.95_alpha_0.5_selection-threshold_0.5_lambda-lens_0.0001_alpha-KD_0.99_temperature-KD_10.0_hidden-layers_1_layer_VIT_explainer_init_none/iter1/explainer_projected",
+            "/checkpoints/spurious-cub-specific-classes/cub/explainer/ViT-B_16/lr_0.01_epochs_500_temperature-lens_6.0_use-concepts-as-pi-input_True_input-size-pi_2048_cov_0.95_alpha_0.5_selection-threshold_0.5_lambda-lens_0.0001_alpha-KD_0.99_temperature-KD_10.0_hidden-layers_1_layer_VIT_explainer_init_none/iter1/explainer_projected",
             "VIT_CUBS_8000_checkpoint.bin"
         )
         print(f"==>> Loading projected VIT BB from : {chkpt}")

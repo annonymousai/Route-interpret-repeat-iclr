@@ -109,7 +109,7 @@ def download_cub(root="CUB_200_2011", force=True):
     print("Temporary file cleaned")
 
     os.system("mv images/* .")
-    with open("/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/data/CUB_200_2011_original/images.txt", "r") as f:
+    with open("/data/CUB_200_2011_original/images.txt", "r") as f:
         lines = f.readlines()
         for line in lines:
             fields = line.split(" ")

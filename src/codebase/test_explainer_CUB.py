@@ -6,20 +6,19 @@ from Explainer.experiments_explainer_CUB import test_glt
 from Explainer.experiments_explainer_spurious_CUB_zz import test_glt_spurious
 from Explainer.experiments_explainer_waterbird_landbird import test_glt_waterbird_landbird
 
-sys.path.append(os.path.abspath("/ocean/projects/asc170022p/shg121/PhD/ICLR-2022"))
 
 parser = argparse.ArgumentParser(description='CUB Testing')
 parser.add_argument('--data-root', metavar='DIR',
-                    default='/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/data/CUB_200_2011',
+                    default='/ICLR-2022/data/CUB_200_2011',
                     help='path to dataset')
 parser.add_argument('--json-root', metavar='DIR',
-                    default='/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/codebase/data_preprocessing',
+                    default='/codebase/data_preprocessing',
                     help='path to json files containing train-val-test split')
 parser.add_argument('--logs', metavar='DIR',
-                    default='/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/log',
+                    default='/log',
                     help='path to tensorboard logs')
 parser.add_argument('--checkpoints', metavar='DIR',
-                    default='/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/checkpoints',
+                    default='/checkpoints',
                     help='path to checkpoints')
 
 parser.add_argument('--checkpoint-model', metavar='file', nargs="+",
@@ -38,7 +37,7 @@ parser.add_argument('--checkpoint-bb', metavar='file',
                     default='best_model_epoch_63.pth.tar',
                     help='checkpoint file of BB')
 parser.add_argument('--output', metavar='DIR',
-                    default='/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/out',
+                    default='/out',
                     help='path to output logs')
 parser.add_argument('--lr-residual', '--learning-rate-residual', default=0.001, type=float,
                     metavar='LR', help='initial learning rate of bb residual')
@@ -83,7 +82,7 @@ parser.add_argument('--smoothing_value', type=float, default=0.0,
                     help="Label smoothing value\n")
 parser.add_argument('--prev_explainer_chk_pt_folder', metavar='path', nargs="+",
                     default=[
-                        "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/checkpoints/cub/explainer/ViT-B_16/lr_0.01_epochs_500_temperature-lens_6.0_use-concepts-as-pi-input_True_input-size-pi_2048_cov_0.2_alpha_0.5_selection-threshold_0.5_lambda-lens_0.0001_alpha-KD_0.99_temperature-KD_10.0_hidden-layers_1_layer_VIT_explainer_init_none/iter1",
+                        "/checkpoints/cub/explainer/ViT-B_16/lr_0.01_epochs_500_temperature-lens_6.0_use-concepts-as-pi-input_True_input-size-pi_2048_cov_0.2_alpha_0.5_selection-threshold_0.5_lambda-lens_0.0001_alpha-KD_0.99_temperature-KD_10.0_hidden-layers_1_layer_VIT_explainer_init_none/iter1",
                     ],
                     help='checkpoint file of residual')
 parser.add_argument('--concept-names', nargs='+',
@@ -225,21 +224,21 @@ def main():
     print("Inputs")
     if args.spurious_specific_classes == "y":
         print("Spurious specific classes")
-        args.data_root = "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/data/spurious/CUB_200_2011"
-        args.logs = "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/log/spurious-cub-specific-classes"
-        args.checkpoints = "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/checkpoints/spurious-cub-specific-classes"
-        args.output = "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/out/spurious-cub-specific-classes"
+        args.data_root = "/data/spurious/CUB_200_2011"
+        args.logs = "/log/spurious-cub-specific-classes"
+        args.checkpoints = "/checkpoints/spurious-cub-specific-classes"
+        args.output = "/out/spurious-cub-specific-classes"
         args.attribute_file_name = "attributes_spurious.npy"
         args.concept_names.extend(['has_water', 'has_land'])
         test_glt_spurious(args)
     elif args.spurious_waterbird_landbird == "y":
         print("Spurious whole dataset")
-        args.data_root = "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/data/spurious/waterbird_complete95_forest2water2"
-        # args.data_root = "/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/data/CUB_200_2011_original"
-        args.logs = f"/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/log/spurious-cub-waterbird-landbird-{args.img_size}"
-        args.checkpoints = f"/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/checkpoints/spurious-cub-waterbird-landbird-{args.img_size}"
-        args.output = f"/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/out/spurious-cub-waterbird-landbird-{args.img_size}"
-        # args.output_to_save = f"/ocean/projects/asc170022p/shg121/PhD/ICLR-2022/out/spurious-cub-waterbird-landbird-original-{args.img_size}"
+        args.data_root = "/data/spurious/waterbird_complete95_forest2water2"
+        # args.data_root = "/data/CUB_200_2011_original"
+        args.logs = f"/log/spurious-cub-waterbird-landbird-{args.img_size}"
+        args.checkpoints = f"/checkpoints/spurious-cub-waterbird-landbird-{args.img_size}"
+        args.output = f"/out/spurious-cub-waterbird-landbird-{args.img_size}"
+        # args.output_to_save = f"/out/spurious-cub-waterbird-landbird-original-{args.img_size}"
         args.attribute_file_name = "attributes_spurious.npy"
         args.concept_names.extend(["has_ocean", "has_lake", "has_bamboo", "has_forest"])
         args.labels = ["0 (Landbird)", "1 (Waterbird)"]

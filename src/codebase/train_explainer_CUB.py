@@ -6,7 +6,6 @@ from Explainer.experiments_explainer_CUB import train_glt, train_baseline_post_h
 from Explainer.experiments_explainer_spurious_CUB_zz import train_glt_spurious
 from Explainer.experiments_explainer_waterbird_landbird import train_glt_waterbird_landbird
 
-sys.path.append(os.path.abspath("/ocean/projects/asc170022p/shg121/PhD/ICLR-2022"))
 
 parser = argparse.ArgumentParser(description='CUB Training')
 parser.add_argument('--data-root', metavar='DIR',
